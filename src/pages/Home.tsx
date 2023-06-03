@@ -8,12 +8,12 @@ export function Home() {
 
   return (
     <div className="relative">
-      <div className="flex items-center justify-center">
+      <div className="flex flex-wrap items-center justify-center gap-3">
         {jobList.map((job) => (
           <div className="max-w-xl overflow-hidden rounded p-5 shadow-lg">
             <img
-              className="w-full"
-              src="https://picsum.photos/1000/750"
+              className="max-h-80 w-full object-cover"
+              src={job.thumbnail}
               alt="Sunset in the mountains"
             />
             <div className="px-6 py-4">
