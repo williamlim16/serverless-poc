@@ -3,4 +3,5 @@ export type Job = {
   company: string
   description: string
   tags?: Array<string>
+  thumbnail: string
 }
