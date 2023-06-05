@@ -16,18 +16,23 @@ export function Home() {
     tags: [],
   })
 
-  const applyJob = useCallback(async (user: User) => {
-    await axios.post(
-      'https://eweh471soh.execute-api.ap-southeast-1.amazonaws.com/apply',
-      {
-        name: user.name,
-        address: user.address,
-        phone: user.phone,
-        email: user.email,
-        emailTo: user.emailTo,
-      }
-    )
-  }, [])
+  const applyJob = useCallback(
+    async (user: User) => {
+      await axios.post(
+        'https://eweh471soh.execute-api.ap-southeast-1.amazonaws.com/apply',
+        {
+          name: user.name,
+          address: user.address,
+          phone: user.phone,
+          email: user.email,
+          emailTo: user.emailTo,
+          occupation: selectedJob.title,
+          company: selectedJob.company,
+        }
+      )
+    },
+    [selectedJob.company, selectedJob.title]
+  )
 
   return (
     <div className="relative">

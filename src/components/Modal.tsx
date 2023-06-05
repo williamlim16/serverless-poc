@@ -125,6 +125,7 @@ function Modal({ setShowModal, applyJob }: Props) {
                 disabled={isLoading}
                 onClick={async () => {
                   await apply()
+                  setShowModal(false)
                 }}
               >
                 Apply
