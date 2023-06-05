@@ -33,6 +33,7 @@ function Modal({ setShowModal, applyJob }: Props) {
 
   const apply = useCallback(async () => {
     try {
+      if (isLoading) return
       setLoading(true)
       await applyJob(userData)
       toast.success('Successfully applied for this job!')
@@ -45,7 +46,7 @@ function Modal({ setShowModal, applyJob }: Props) {
     } finally {
       setLoading(false)
     }
-  }, [userData, applyJob])
+  }, [isLoading, applyJob, userData])
 
   return (
     <div className="fixed top-0 left-0  w-full">
@@ -113,12 +114,15 @@ function Modal({ setShowModal, applyJob }: Props) {
                 />
               </label>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex w-full items-center justify-between">
               <button
-                className={`focus:shadow-outline rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none ${
-                  isLoading ? 'cursor-not-allowed' : ''
-                }`}
+                className={`focus:shadow-outline w-full
+                 rounded bg-blue-500 py-2 px-4 font-bold 
+                 text-white hover:bg-blue-700 focus:outline-none disabled:bg-opacity-40 ${
+                   isLoading ? 'cursor-not-allowed' : ''
+                 }`}
                 type="button"
+                disabled={isLoading}
                 onClick={async () => {
                   await apply()
                 }}
